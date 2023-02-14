@@ -36,7 +36,7 @@ if __name__ == "__main__":
         shutil.rmtree(tiff_slide_dir)    
     os.makedirs(tiff_slide_dir)
 
-    # norm slides one-by-one
+    # covnert slides one-by-one
     for idx, cur_slide_name in enumerate(slide_lst):
         cur_time_str = datetime.now(pytz.timezone('America/Chicago')).strftime("%m/%d/%Y, %H:%M:%S")
         print("@ {} Norm {}/{} {}".format(cur_time_str, idx+1, len(slide_lst), cur_slide_name))
