@@ -2,9 +2,14 @@
 Convert slides/images to pyramidal tiff
 
 ## 1. Docker environement
-### a. Build docker image
+### a. Build docker image from Dockerfile
 ```
 $ docker build -t pyramidal_tiff:chen .
+```
+* or pull from Docker Hub
+```
+$ docker pull pingjunchen/pyramidal_tiff:chen
+$ docker tag pingjunchen/pyramidal_tiff:chen pyramidal_tiff:chen
 ```
 ### b. Run docker container
 ``` Start docker container (specify CODE_ROOT & DATA_ROOT)
