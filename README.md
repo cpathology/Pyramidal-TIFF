@@ -9,7 +9,7 @@ $ docker build -t pyramidal_tiff:chen .
 ### b. Run docker container
 ``` Start docker container (specify CODE_ROOT & DATA_ROOT)
 $ docker run -it --rm --user $(id -u):$(id -g) \
-  -v ${CODE_ROOT}:/App/Pyramidal-FIFF \
+  -v ${CODE_ROOT}:/App/Pyramidal-TIFF \
   -v ${DATA_ROOT}:/Data \
   --shm-size=128G --cpuset-cpus=0-19 \
   --name pyramidal_tiff_chen pyramidal_tiff:chen
@@ -18,7 +18,7 @@ $ docker run -it --rm --user $(id -u):$(id -g) \
 ```
 $ docker run -it --rm --user $(id -u):$(id -g) \
   -v /rsrch1/ip/pchen6/Codes/CHEN/Pyramidal-TIFF:/App/Pyramidal-TIFF \
-  -v /rsrch1/ip/pchen6/MPRData:/Data \
+  -v /rsrch1/ip/pchen6/Archive/TestData:/Data \
   --shm-size=128G --cpuset-cpus=0-19 \
   --name pyramidal_tiff_chen pyramidal_tiff:chen
 ```
