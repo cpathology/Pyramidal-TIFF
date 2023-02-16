@@ -6,6 +6,7 @@ from datetime import datetime
 import openslide
 import numpy as np
 from skimage import io
+import cv2
 import PIL
 from PIL import Image
 PIL.Image.MAX_IMAGE_PIXELS = 933120000
@@ -39,10 +40,11 @@ if __name__ == "__main__":
     # convert images one-by-one
     for idx, cur_img_name in enumerate(img_lst):
         cur_time_str = datetime.now(pytz.timezone('America/Chicago')).strftime("%m/%d/%Y, %H:%M:%S")
-        print("@ {} Norm {}/{} {}".format(cur_time_str, idx+1, len(img_lst), cur_img_name))
+        print("@ {} Convert {}/{} {}".format(cur_time_str, idx+1, len(img_lst), cur_img_name))
         # load slide
         raw_img_path = os.path.join(raw_img_dir, cur_img_name + args.raw_img_suffix)
-        raw_img = io.imread(raw_img_path)
+        raw_img = cv2.imread(raw_img_path)
+        raw_img = cv2.cvtColor(raw_img, cv2.COLOR_BGR2RGB)
         # save to tif
         tif_img_path = os.path.join(tiff_img_dir, cur_img_name + ".tif")
         numpy2tiff(raw_img, tif_img_path)

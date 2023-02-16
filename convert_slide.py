@@ -39,7 +39,7 @@ if __name__ == "__main__":
     # covnert slides one-by-one
     for idx, cur_slide_name in enumerate(slide_lst):
         cur_time_str = datetime.now(pytz.timezone('America/Chicago')).strftime("%m/%d/%Y, %H:%M:%S")
-        print("@ {} Norm {}/{} {}".format(cur_time_str, idx+1, len(slide_lst), cur_slide_name))
+        print("@ {} Convert {}/{} {}".format(cur_time_str, idx+1, len(slide_lst), cur_slide_name))
         # load slide
         raw_slide_path = os.path.join(raw_slide_dir, cur_slide_name + args.raw_slide_suffix)
         slide_head = openslide.OpenSlide(raw_slide_path)
