@@ -45,6 +45,6 @@ WORKDIR /.local
 RUN chmod 777 /.local
 WORKDIR /Data
 RUN chmod 777 /Data
-WORKDIR /App/Pyramidal-Tiff
+WORKDIR /App/Pyramidal-TIFF
 
 CMD ["/bin/bash"]
