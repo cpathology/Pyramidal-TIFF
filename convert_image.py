@@ -18,7 +18,7 @@ def set_args():
     parser = argparse.ArgumentParser(description = "Convert Image to Pyramidal TIFF")
     parser.add_argument("--data_root",         type=str,       default="/Data")
     parser.add_argument("--raw_img_dir",       type=str,       default="RawImages")
-    parser.add_argument("--raw_img_suffix",    type=str,       default=".png")
+    parser.add_argument("--raw_img_suffix",    type=str,       default=".tif")
     parser.add_argument("--tiff_img_dir",      type=str,       default="TiffImages")
 
     args = parser.parse_args()
