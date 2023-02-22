@@ -23,7 +23,7 @@ $ docker run -it --rm --user $(id -u):$(id -g) \
 ```
 $ docker run -it --rm --user $(id -u):$(id -g) \
   -v /rsrch1/ip/pchen6/Codes/CHEN/Pyramidal-TIFF:/App/Pyramidal-TIFF \
-  -v /rsrch1/ip/pchen6/Archive/TestData:/Data \
+  -v /rsrch1/ip/pchen6/DataCollection:/Data \
   --shm-size=128G --cpuset-cpus=0-19 \
   --name pyramidal_tiff_chen pyramidal_tiff:chen
 ```
@@ -31,10 +31,10 @@ $ docker run -it --rm --user $(id -u):$(id -g) \
 ## 2. Pyramidal tiff conversion
 * Convert slides
 ```
-$ python convert_slide.py --raw_slide_dir RawSlides --raw_slide_suffix .svs --tiff_slide_dir TiffSlides
+$ python convert_slide.py --raw_slide_dir RawSlides --raw_slide_suffix .svs
 ```
 
 * Convert images
 ```
-$ python convert_image.py --raw_img_dir RawImages --raw_img_suffix .tif --tiff_img_dir TiffImages
+$ python convert_image.py --raw_img_dir RawImages --raw_img_suffix .tif
 ```
