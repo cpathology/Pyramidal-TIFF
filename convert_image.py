@@ -19,7 +19,7 @@ def set_args():
     parser.add_argument("--data_root",         type=str,       default="/Data")
     parser.add_argument("--raw_img_dir",       type=str,       default="RawImages")
     parser.add_argument("--raw_img_suffix",    type=str,       default=".tif")
-    parser.add_argument("--tiff_img_dir",      type=str,       default="TiffImages")
+    parser.add_argument("--tiff_slide_dir",    type=str,       default="TiffSlides")
 
     args = parser.parse_args()
     return args
@@ -32,10 +32,10 @@ if __name__ == "__main__":
     raw_img_dir = os.path.join(args.data_root, args.raw_img_dir)
     img_lst = sorted([os.path.splitext(ele)[0] for ele in os.listdir(raw_img_dir) if ele.endswith(args.raw_img_suffix)])
     # Tiff image directory
-    tiff_img_dir = os.path.join(args.data_root, args.tiff_img_dir)
-    if os.path.exists(tiff_img_dir):
-        shutil.rmtree(tiff_img_dir)    
-    os.makedirs(tiff_img_dir)
+    tiff_slide_dir = os.path.join(args.data_root, args.tiff_slide_dir)
+    if os.path.exists(tiff_slide_dir):
+        shutil.rmtree(tiff_slide_dir)    
+    os.makedirs(tiff_slide_dir)
 
     # convert images one-by-one
     for idx, cur_img_name in enumerate(img_lst):
@@ -46,11 +46,11 @@ if __name__ == "__main__":
         raw_img = cv2.imread(raw_img_path)
         raw_img = cv2.cvtColor(raw_img, cv2.COLOR_BGR2RGB)
         # save to tif
-        tif_img_path = os.path.join(tiff_img_dir, cur_img_name + ".tif")
-        numpy2tiff(raw_img, tif_img_path)
+        tif_slide_path = os.path.join(tiff_slide_dir, cur_img_name + ".tif")
+        numpy2tiff(raw_img, tif_slide_path)
         # convert the tif to pyramid tiff
-        tiff_img_path = os.path.join(tiff_img_dir, cur_img_name + ".tiff")
-        conversion_cmd_str = " ".join(["vips", "im_vips2tiff", tif_img_path, tiff_img_path + ":jpeg:75,tile:256x256,pyramid"])
+        tiff_slide_path = os.path.join(tiff_slide_dir, cur_img_name + ".tiff")
+        conversion_cmd_str = " ".join(["vips", "im_vips2tiff", tif_slide_path, tiff_slide_path + ":jpeg:75,tile:256x256,pyramid"])
         os.system(conversion_cmd_str) 
-        if os.path.exists(tif_img_path):
-            os.remove(tif_img_path)
+        if os.path.exists(tif_slide_path):
+            os.remove(tif_slide_path)
