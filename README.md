@@ -23,7 +23,7 @@ $ docker run -it --rm --user $(id -u):$(id -g) \
 ```
 $ docker run -it --rm --user $(id -u):$(id -g) \
   -v /rsrch1/ip/pchen6/Codes/CHEN/Pyramidal-TIFF:/App/Pyramidal-TIFF \
-  -v /rsrch1/ip/pchen6/DataCollection:/Data \
+  -v /rsrch1/ip/pchen6/DataCollection/PyramidalTIFF:/Data \
   --shm-size=128G --cpuset-cpus=0-19 \
   --name pyramidal_tiff_chen pyramidal_tiff:chen
 ```
