@@ -7,16 +7,27 @@ import xml.etree.ElementTree as ET
 
 
 def numpy2tiff(image, path):
+    """
+    Save a numpy array as a TIFF image file.
+
+    Parameters:
+    image (ndarray): The input image as a numpy array.
+    path (str): The output file path.
+
+    Returns:
+    None
+    """
     def tiff_tag(tag_code, datatype, values):
-        types = {'<H': 3, '<L': 4, '<Q': 16}
-        datatype_code = types[datatype]
+        datatype_code = np.dtype(datatype).num
         number = 1 if isinstance(values, int) else len(values)
+        tag_bytes = bytearray(12 + number * np.dtype(datatype).itemsize)
+        struct.pack_into('<H', tag_bytes, 0, tag_code)
+        struct.pack_into('<H', tag_bytes, 2, datatype_code)
+        struct.pack_into('<L', tag_bytes, 4, number)
         if number == 1:
-            values_bytes = struct.pack(datatype, values)
+            struct.pack_into(datatype, tag_bytes, 8, values)
         else:
-            values_bytes = struct.pack('<' + (datatype[-1:] * number), *values)
-        tag_bytes = struct.pack('<HHQ', tag_code, datatype_code, number) + values_bytes
-        tag_bytes += b'\x00' * (20 - len(tag_bytes))
+            struct.pack_into('<' + (datatype[-1:] * number), tag_bytes, 8, *values)
         return tag_bytes
 
     image_bytes = image.shape[0] * image.shape[1] * image.shape[2]
