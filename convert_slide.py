@@ -8,7 +8,7 @@ import numpy as np
 from skimage import io
 import PIL
 from PIL import Image
-PIL.Image.MAX_IMAGE_PIXELS = 933120000
+PIL.Image.MAX_IMAGE_PIXELS = None
 
 from utils import numpy2tiff
 
