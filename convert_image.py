@@ -9,10 +9,9 @@ from skimage import io
 import cv2
 import PIL
 from PIL import Image
-PIL.Image.MAX_IMAGE_PIXELS = 933120000
+PIL.Image.MAX_IMAGE_PIXELS = None
 
 from utils import numpy2tiff
-
 
 def set_args():
     parser = argparse.ArgumentParser(description = "Convert Image to Pyramidal TIFF")
